@@ -6,8 +6,10 @@ import { NameInput } from 'components/NameInput/NameInput';
 import { Contacts } from 'components/Contacts/Contacts';
 
 import { Wrapper } from './app.styled';
+
 export const App = () => {
   const [contacts, setContacts] = useState([]);
+
   const [filter, setFilter] = useState('');
 
   useEffect(() => {

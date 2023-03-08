@@ -4,18 +4,27 @@ import swal from 'sweetalert';
 
 import { FormEl } from './NameInput.styled';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../redux/slice';
+
 const initialValues = {
   name: '',
   number: '',
 };
 
-export function NameInput({ addContact, contacts }) {
+export function NameInput({ contacts }) {
+  const contactsRedax = useSelector(state => state.contacts);
+  // console.log(contactsRedax);
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { resetForm }) => {
     let check = contacts.find(e => e.name === values.name);
 
     if (check === undefined) {
       resetForm();
-      addContact(values);
+      // addContact(values);
+      console.log(values);
+      dispatch(addContact(values));
     } else {
       swal(`"${values.name}" is alredy in contacts`, '', 'warning');
     }
